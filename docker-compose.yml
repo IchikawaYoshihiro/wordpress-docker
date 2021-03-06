@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  app:
+    build: ./app
+    restart: always
+    ports:
+      - "${app_port}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: wp_pass
+      WORDPRESS_DB_NAME: wp_db
+    volumes:
+      - ./src:/var/www/html
+
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "${db_port}:3306"
+    environment:
+      MYSQL_DATABASE: wp_db
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wp_pass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "${mailhog_port}:8025"
+      - "${mailhog_smtp_port}:1025"
