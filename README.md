@@ -1,6 +1,6 @@
-# Laravel docker base
+# WordPress docker
 
-LaravelアプリケーションをAWSへデプロイすることを想定したAmazonLinuxベースのLAMP開発環境。
+WordPressテーマ開発用のLAMP開発環境。
 
 # Containers
 
